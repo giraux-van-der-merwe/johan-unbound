@@ -28,30 +28,33 @@ export default async function Home() {
           </nav>
 
           <div className="hero-stage">
-            <h1>TOTALLY UNBOUND</h1>
-            <p className="hero-note hero-note-left">
-              Personal stories, recent routes, and practical notes from a life
-              lived beyond the obvious map.
-            </p>
+            <h1>
+              <span>TOTALLY</span> <span>UNBOUND</span>
+            </h1>
+            <div className="hero-bio">
+              <p className="hero-kicker">Personal stories and travel</p>
+              <p>
+                Johan Fourie shares recent routes, practical notes, and a life
+                shaped by curiosity beyond the obvious map.
+              </p>
+            </div>
             <div
-              aria-label="Temporary adventure hero image"
+              aria-label="Johan Unbound adventure hero image"
               className="hero-person"
               role="img"
             />
-            <div className="hero-note hero-note-right">
-              <div className="hero-avatars" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-              <p>
-                Travel boldly, stay curious, and keep moving toward the wider
-                view.
-              </p>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="instagram-feature" aria-labelledby="instagram-title">
+        <div className="instagram-feature-inner">
+          <div className="instagram-feature-header">
+            <p>Recent Instagram posts</p>
+            <h2 id="instagram-title">Field notes from the road.</h2>
           </div>
 
-          <div className="hero-card-rail" aria-label="Recent Instagram posts">
+          <div className="instagram-card-rail" aria-label="Recent Instagram posts">
             {heroCards.map((post, index) => (
               <a
                 className="hero-post-card"
