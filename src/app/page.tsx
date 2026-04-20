@@ -1,129 +1,128 @@
 import Link from "next/link";
-import { InstagramCarousel } from "@/components/instagram-carousel";
-import { getInstagramPosts } from "@/lib/instagram";
+import { getInstagramPosts, type InstagramPost } from "@/lib/instagram";
+
+const instagramUrl = "https://www.instagram.com/mr.supawesome_traveler/";
+const linkedInUrl = "https://www.linkedin.com/in/johan-fourie-9459391ab/";
 
 export default async function Home() {
   const instagramFeed = await getInstagramPosts(30);
+  const heroCards = buildHeroCards(instagramFeed.posts);
 
   return (
-    <main className="bg-[#f7f3ea] text-[#1d2520]">
-      <section className="relative isolate min-h-[92vh] overflow-hidden bg-[#13231d] text-white">
-        <div
-          className="absolute inset-0 -z-10 bg-cover bg-center opacity-60"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82')",
-          }}
-        />
-        <div className="absolute inset-0 -z-10 bg-[#13231d]/58" />
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-6 sm:px-8">
-          <a className="text-sm font-semibold uppercase tracking-[0.24em]" href="#top">
-            Johan Unbound
-          </a>
-          <Link
-            className="rounded-full border border-white/35 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[#13231d]"
-            href="/recent-adventures"
-          >
-            Recent Adventures
-          </Link>
-        </nav>
-        <div
-          className="mx-auto flex min-h-[calc(92vh-88px)] max-w-6xl flex-col justify-end px-5 pb-12 sm:px-8 lg:pb-16"
-          id="top"
-        >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-[#f4bf72]">
-            Personal brand and contact
-          </p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-none sm:text-7xl lg:text-8xl">
-            Johan Unbound
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/86 sm:text-xl">
-            A compact home for Johan&apos;s backstory, current links, ways to
-            connect, and the first trailhead into his Recent Adventures.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              className="rounded-full bg-[#f4bf72] px-5 py-3 text-sm font-bold text-[#13231d] transition hover:bg-white"
-              href="mailto:hello@johanunbound.com"
-            >
-              Contact Johan
-            </a>
-            <Link
-              className="rounded-full border border-white/35 px-5 py-3 text-sm font-bold text-white transition hover:bg-white hover:text-[#13231d]"
-              href="/recent-adventures"
-            >
-              Read Adventures
+    <main className="home-redesign bg-[#e9e2cf] text-[#19134c]">
+      <section className="hero-shell">
+        <div className="hero-panel">
+          <nav className="hero-nav" aria-label="Primary navigation">
+            <Link className="hero-brand" href="/">
+              Johan Unbound
             </Link>
+            <div className="hero-links">
+              <a href={instagramUrl} rel="noreferrer" target="_blank">
+                Instagram
+              </a>
+              <a href={linkedInUrl} rel="noreferrer" target="_blank">
+                LinkedIn
+              </a>
+              <Link href="/recent-adventures">Blog</Link>
+            </div>
+          </nav>
+
+          <div className="hero-stage">
+            <h1>TOTALLY UNBOUND</h1>
+            <p className="hero-note hero-note-left">
+              Personal stories, recent routes, and practical notes from a life
+              lived beyond the obvious map.
+            </p>
+            <div
+              aria-label="Temporary adventure hero image"
+              className="hero-person"
+              role="img"
+            />
+            <div className="hero-note hero-note-right">
+              <div className="hero-avatars" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <p>
+                Travel boldly, stay curious, and keep moving toward the wider
+                view.
+              </p>
+            </div>
+          </div>
+
+          <div className="hero-card-rail" aria-label="Recent Instagram posts">
+            {heroCards.map((post, index) => (
+              <a
+                className="hero-post-card"
+                href={post.permalink}
+                key={`${post.id}-${index}`}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <div
+                  className="hero-post-image"
+                  style={{
+                    backgroundImage: `url("${post.thumbnailUrl || post.mediaUrl}")`,
+                  }}
+                />
+                <span className="hero-card-icon" aria-hidden="true">
+                  ○
+                </span>
+                <p>{truncateCaption(post.caption)}</p>
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1fr_1.2fr] lg:py-20">
+      <footer className="site-footer">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9b5f35]">
-            Backstory
-          </p>
-          <h2 className="mt-3 text-4xl font-semibold leading-tight text-[#16231d] sm:text-5xl">
-            Built for a life with fewer borders.
-          </h2>
-        </div>
-        <div className="space-y-6 text-lg leading-8 text-[#4b5a51]">
+          <Link className="footer-brand" href="/">
+            Johan Unbound
+          </Link>
           <p>
-            Johan Unbound is a personal outpost for the story behind the work:
-            the choices, questions, places, and people that keep widening the
-            map. It is intentionally simple, direct, and easy to keep alive.
-          </p>
-          <p>
-            The home page carries the evergreen essentials. Recent Adventures is
-            where new stories can collect over time as a blog, field journal, or
-            lightweight archive.
+            A personal field note for stories, contact, and recent adventures.
           </p>
         </div>
-      </section>
-
-      <section className="border-y border-[#d8cbb8] bg-white">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-3 lg:py-16">
-          {[
-            ["LinkedIn", "Professional updates and conversation."],
-            ["Instagram", "Visual notes from places and projects."],
-            ["Email", "The cleanest route for invitations and contact."],
-          ].map(([title, text]) => (
-            <div key={title}>
-              <h3 className="text-xl font-semibold text-[#16231d]">{title}</h3>
-              <p className="mt-3 text-base leading-7 text-[#59645d]">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <InstagramCarousel
-        error={instagramFeed.error}
-        isLive={instagramFeed.isLive}
-        posts={instagramFeed.posts}
-      />
-
-      <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1.1fr_0.9fr] lg:py-20">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9b5f35]">
-            Contact
-          </p>
-          <h2 className="mt-3 text-4xl font-semibold text-[#16231d]">
-            Open to good conversations, thoughtful work, and the next road.
-          </h2>
-        </div>
-        <div className="rounded-lg border border-[#d8cbb8] bg-white p-6">
-          <a
-            className="block text-lg font-semibold text-[#16231d] underline decoration-[#f4bf72] decoration-4 underline-offset-4"
-            href="mailto:hello@johanunbound.com"
-          >
-            hello@johanunbound.com
+        <div className="footer-links">
+          <a href="mailto:hello@johanunbound.com">hello@johanunbound.com</a>
+          <a href={instagramUrl} rel="noreferrer" target="_blank">
+            Instagram
           </a>
-          <p className="mt-4 text-base leading-7 text-[#59645d]">
-            Replace this placeholder with Johan&apos;s preferred inbox and add
-            live social URLs when they are ready.
-          </p>
+          <a href={linkedInUrl} rel="noreferrer" target="_blank">
+            LinkedIn
+          </a>
+          <Link href="/recent-adventures">Blog</Link>
         </div>
-      </section>
+        <p className="footer-meta">
+          © {new Date().getFullYear()} Johan Unbound. All rights reserved.
+        </p>
+      </footer>
     </main>
   );
+}
+
+function buildHeroCards(posts: InstagramPost[]) {
+  const mediaPosts = posts.filter((post) => post.mediaUrl || post.thumbnailUrl);
+
+  if (mediaPosts.length >= 8) {
+    return mediaPosts.slice(0, 8);
+  }
+
+  const loop: InstagramPost[] = [];
+
+  while (loop.length < 8 && mediaPosts.length > 0) {
+    loop.push(...mediaPosts);
+  }
+
+  return loop.slice(0, 8);
+}
+
+function truncateCaption(caption?: string) {
+  if (!caption) {
+    return "View on Instagram";
+  }
+
+  return caption.length > 68 ? `${caption.slice(0, 65).trim()}...` : caption;
 }
