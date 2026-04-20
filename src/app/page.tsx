@@ -16,6 +16,17 @@ export default async function Home() {
             <Link className="hero-brand" href="/">
               Johan Unbound
             </Link>
+            <input
+              aria-label="Toggle navigation menu"
+              className="nav-toggle"
+              id="nav-toggle"
+              type="checkbox"
+            />
+            <label className="nav-menu-button" htmlFor="nav-toggle">
+              <span />
+              <span />
+              <span />
+            </label>
             <div className="hero-links">
               <a href={instagramUrl} rel="noreferrer" target="_blank">
                 Instagram
