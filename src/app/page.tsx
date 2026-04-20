@@ -51,7 +51,7 @@ export default async function Home() {
         <div className="instagram-feature-inner">
           <div className="instagram-feature-header">
             <p>Recent Instagram posts</p>
-            <h2 id="instagram-title">Field notes from the road.</h2>
+            <h2 id="instagram-title">Field Notes from recent adventures</h2>
           </div>
 
           <div className="instagram-card-rail" aria-label="Recent Instagram posts">
@@ -84,12 +84,12 @@ export default async function Home() {
           <Link className="footer-brand" href="/">
             Johan Unbound
           </Link>
-          <p>
-            A personal field note for stories, contact, and recent adventures.
-          </p>
+          <p>Notes from my adventures.</p>
         </div>
         <div className="footer-links">
-          <a href="mailto:hello@johanunbound.com">hello@johanunbound.com</a>
+          <a href="mailto:johanfouriephoto@gmail.com">
+            johanfouriephoto@gmail.com
+          </a>
           <a href={instagramUrl} rel="noreferrer" target="_blank">
             Instagram
           </a>
