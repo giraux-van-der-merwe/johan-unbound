@@ -60,6 +60,8 @@ a {
 }
 
 .hero-shell {
+  display: flex;
+  justify-content: center;
   min-height: calc(100vh - 1.5rem);
 }
 
@@ -67,9 +69,12 @@ a {
   background: #fbf6e8;
   border-radius: 0.62rem;
   box-shadow: 0 24px 80px rgba(49, 42, 26, 0.14);
+  margin: 0 auto;
+  max-width: var(--content-width);
   min-height: calc(100vh - 1.5rem);
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .hero-nav {
@@ -78,7 +83,7 @@ a {
   display: grid;
   grid-template-columns: 1fr auto;
   margin: 0 auto;
-  max-width: var(--content-width);
+  max-width: 100%;
   min-height: 5.9rem;
   padding: 0;
   position: relative;
@@ -110,7 +115,7 @@ a {
 
 .hero-stage {
   margin: 0 auto;
-  max-width: var(--content-width);
+  max-width: 100%;
   min-height: calc(100vh - 7.4rem);
   padding: clamp(3rem, 5vw, 4.6rem) 0 clamp(2.4rem, 4vw, 3.4rem);
   position: relative;
@@ -143,12 +148,12 @@ a {
 }
 
 .hero-bio {
-  color: #2b265c;
-  font-size: clamp(0.95rem, 1.12vw, 1.16rem);
+  color: #fbf6e8;
+  font-size: clamp(1.08rem, 1.35vw, 1.34rem);
   font-weight: 400;
-  left: clamp(1rem, 4vw, 3.2rem);
+  left: clamp(3rem, 12vw, 9.6rem);
   line-height: 1.22;
-  max-width: 18rem;
+  max-width: 20rem;
   position: absolute;
   text-align: left;
   top: 48%;
@@ -164,8 +169,8 @@ a {
 }
 
 .hero-kicker {
-  color: #19134c;
-  font-size: 0.82rem;
+  color: #fbf6e8;
+  font-size: 0.88rem;
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -204,7 +209,7 @@ a {
   letter-spacing: 0;
   line-height: 0.9;
   margin: 0;
-  max-width: 44rem;
+  max-width: 58rem;
   text-align: right;
 }
 
@@ -296,7 +301,7 @@ a {
   align-items: end;
   display: grid;
   gap: 2rem;
-  grid-template-columns: 1.3fr 1fr auto;
+  grid-template-columns: 1fr auto auto;
   margin: 0 auto;
   max-width: var(--content-width);
   padding: 3.2rem 2rem 2.1rem;
@@ -320,9 +325,10 @@ a {
 .footer-links {
   align-self: end;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.85rem 1.35rem;
   justify-content: flex-start;
+  white-space: nowrap;
 }
 
 .footer-links a {
@@ -361,8 +367,8 @@ a {
   }
 
   .hero-bio {
-    left: 1.6rem;
-    max-width: 16rem;
+    left: clamp(2rem, 9vw, 6rem);
+    max-width: 19rem;
     top: 38%;
   }
 
@@ -386,6 +392,11 @@ a {
   .site-footer {
     grid-template-columns: 1fr;
     padding: 2.5rem 0 1.6rem;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    white-space: normal;
   }
 
   .footer-meta {
@@ -431,14 +442,22 @@ a {
   }
 
   .hero-bio {
-    background: rgba(251, 246, 232, 0.72);
-    border-radius: 0.45rem;
-    left: 1rem;
-    max-width: calc(100vw - 2.84rem);
-    padding: 0.8rem 0.85rem;
-    right: 1rem;
-    top: auto;
-    bottom: 2.1rem;
+    background: transparent;
+    border-radius: 0;
+    color: #2b265c;
+    font-size: 1.08rem;
+    left: auto;
+    line-height: 1.24;
+    margin-top: 1rem;
+    max-width: 100%;
+    padding: 0;
+    position: static;
+    right: auto;
+  }
+
+  .hero-kicker {
+    color: #19134c;
+    font-size: 0.88rem;
   }
 
   .hero-person {

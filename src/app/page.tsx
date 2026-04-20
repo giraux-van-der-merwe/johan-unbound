@@ -31,6 +31,11 @@ export default async function Home() {
             <h1>
               <span>TOTALLY</span> <span>UNBOUND</span>
             </h1>
+            <div
+              aria-label="Johan Unbound adventure hero image"
+              className="hero-person"
+              role="img"
+            />
             <div className="hero-bio">
               <p className="hero-kicker">Personal stories and travel</p>
               <p>
@@ -38,11 +43,6 @@ export default async function Home() {
                 shaped by curiosity beyond the obvious map.
               </p>
             </div>
-            <div
-              aria-label="Johan Unbound adventure hero image"
-              className="hero-person"
-              role="img"
-            />
           </div>
         </div>
       </section>
