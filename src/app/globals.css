@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f3ea;
+  --foreground: #1d2520;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+::selection {
+  background: #f4bf72;
+  color: #13231d;
+}
+
+.instagram-wall {
+  margin-left: -10vw;
+  margin-right: -10vw;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 7%,
+    black 93%,
+    transparent
+  );
+  padding: 1.5rem 0 2.75rem;
+}
+
+.instagram-wall-inner {
+  transform: rotate(-3deg);
+  transform-origin: center;
+}
+
+.instagram-row {
+  overflow: hidden;
+  padding: 0.45rem 0;
+  width: 120vw;
+}
+
+.instagram-row-bottom {
+  margin-top: -1.8rem;
+  transform: translateX(7rem);
+}
+
+.instagram-row-track {
+  display: flex;
+  gap: 0.95rem;
+  width: max-content;
+}
+
+.instagram-row-track-left {
+  animation: instagram-scroll-left 54s linear infinite;
+}
+
+.instagram-row-track-right {
+  animation: instagram-scroll-right 58s linear infinite;
+}
+
+.instagram-wall:hover .instagram-row-track {
+  animation-play-state: paused;
+}
+
+.instagram-grid-card {
+  background: #f7f3ea;
+  border: 1px solid rgba(216, 203, 184, 0.76);
+  border-radius: 0.5rem;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+  color: #16231d;
+  display: block;
+  flex: 0 0 13.5rem;
+  height: 17rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.instagram-grid-card:nth-child(3n + 1) {
+  transform: translateY(0.55rem) rotate(1deg);
+}
+
+.instagram-grid-card:nth-child(3n + 2) {
+  transform: translateY(-0.35rem) rotate(-0.7deg);
+}
+
+.instagram-grid-card:nth-child(3n) {
+  transform: translateY(0.15rem) rotate(0.4deg);
+}
+
+.instagram-caption {
+  background: linear-gradient(to top, rgba(10, 14, 12, 0.82), transparent);
+  bottom: 0;
+  color: white;
+  display: -webkit-box;
+  font-size: 0.86rem;
+  font-weight: 650;
+  left: 0;
+  line-height: 1.25rem;
+  margin: 0;
+  min-height: 42%;
+  overflow: hidden;
+  padding: 3.9rem 0.9rem 0.9rem;
+  position: absolute;
+  right: 0;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@keyframes instagram-scroll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.475rem));
+  }
+}
+
+@keyframes instagram-scroll-right {
+  from {
+    transform: translateX(calc(-50% - 0.475rem));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-row-track {
+    animation: none;
+    overflow-x: auto;
+    width: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .instagram-wall {
+    margin-left: -22vw;
+    margin-right: -22vw;
+  }
+
+  .instagram-wall-inner {
+    transform: rotate(-4deg);
+  }
+
+  .instagram-row-bottom {
+    margin-top: -1.1rem;
+    transform: translateX(4rem);
+  }
+
+  .instagram-grid-card {
+    flex-basis: 10.5rem;
+    height: 13.25rem;
+  }
+
+  .instagram-caption {
+    font-size: 0.78rem;
+    line-height: 1.12rem;
+    padding: 3.1rem 0.75rem 0.75rem;
+  }
 }
