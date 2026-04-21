@@ -352,6 +352,14 @@ a {
   text-align: right;
 }
 
+@media (max-width: 1366px) and (min-height: 1000px) {
+  .hero-shell,
+  .hero-panel,
+  .hero-stage {
+    min-height: auto;
+  }
+}
+
 @media (max-width: 980px) {
   :root {
     --content-width: min(88vw, 88rem);
